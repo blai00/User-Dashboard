@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>Message Board</title>
+</head>
+<body>
+	<h2>{{users.first_name}} {{users.last_name}}</h2>
+	<h3>Registered At: {{users.created_at}}</h3>
+	<h3>Email Address: {{users.email}}</h3>
+	<h3>Description: {{users.descriptions}}</h3>
+
+	{% for messages in message %}
+		<p>{{messages.message}}</p>
+		{% for comments in blog %}
+		<form action ='/comment/{{blog.id}}' method = 'post'>
+			{% csrf_token %}
+			<textarea name='comment' rows='8' cols='40'></textarea>
+			<input type = 'submit' value ='Post'>
+		</form> 
+		{% endfor %}
+	{% endfor %}
+
+
+	<h2> Leave a Message for {{users.first_name}} {{users.last_name}}</h2>
+	<form action = '/message' method = 'post'>
+ 		{% csrf_token %}
+ 		<textarea name = 'blog' rows ='8' cols='40'></textarea>
+ 		<input type = 'submit' value ="Post">
+	</form>

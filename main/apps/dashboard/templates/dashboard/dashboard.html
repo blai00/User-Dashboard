@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title>Dashboard</title>
+</head>
+<body>
+	<h2>Dashboard</h2>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Created At</th>
+			<th>Actions</th>
+		</tr>
+		</thead>
+		<tbody>
+			{% for users in user %}
+			<tr>
+				<td><a href='/{{users.id}}/user/show'>{{users.first_name}} {{users.last_name}}</a></td>
+				<td>{{users.email}}</td>
+				<td>{{users.created_at}}</td>uhh
+			{% endfor %}	
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

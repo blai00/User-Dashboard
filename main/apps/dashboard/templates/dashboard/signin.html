@@ -1,0 +1,14 @@
+<html>
+<head>
+	<title>Login</title>
+</head>
+<body>
+	<h2>Please login below</h2>
+	<form action = '/login' method = 'post'>
+		{% csrf_token %}
+		Email: <input type = 'text' name = 'email'>
+		Password: <input type ='password' name ='password'>
+		<input type = 'submit' name = 'submit'
+	</form>
+	<a href ='/new'>Don't have an account?</a>
+</body>
