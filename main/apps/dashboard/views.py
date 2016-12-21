@@ -68,7 +68,7 @@ def show(request):
 		'comment' : comment
 	}
 
-	return render(request, 'dashbaord/show.html', context)
+	return render(request, 'dashboard/show.html', context)
 
 def update(request,id):
 	User.UserManager.update(id)
@@ -83,3 +83,9 @@ def delete_comment(request,id):
 	remove = Comment.objects.get(id = id)
 	remove.delete()
 	return redirect('/show')
+
+def signin(request):
+	return render(request, 'dashboard/signin.html')
+
+def add_user(request):
+	return render(request, 'dashboard/new.html')

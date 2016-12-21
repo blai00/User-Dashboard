@@ -12,12 +12,13 @@ class UserManager(models.Manager):
 		if len(errors) > 0:
 			return (False, errors)
 		pw_hash = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt())
-		user = self.create(first_name = request.POST['first_name'], last_name= request.POST['last_name'], email = request.POST['email'], pw_hash=pw_hash)
+		user = self.create(first_name = request.POST['first_name'], last_name= request.POST['last_name'], email_address = request.POST['email'], pw_hash=pw_hash)
 
 		return(True, user)
 	
 	def login(self,request):
 		try:
+			dank = request.POST
 			user = User.UserManager.get(email=request.POST['email'])
 			password = request.POST['password'].encode()
 			if bcrypt.hashpw(password, user.pw_hash.encode()):
@@ -42,10 +43,10 @@ class UserManager(models.Manager):
 		if len(errors) > 0:
 			return (False, errors)
 		pw_hash = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt())
-		user = self.save(first_name = request.POST['first_name'], last_name= request.POST['last_name'], email = request.POST['email'], pw_hash=pw_hash)
+		user = self.save(first_name = request.POST['first_name'], last_name= request.POST['last_name'], email_address = request.POST['email'], pw_hash=pw_hash)
 
 class User(models.Model):
-	email = models.CharField(max_length = 255)
+	email_address = models.CharField(max_length = 255)
 	first_name = models.CharField(max_length = 255)
 	last_name = models.CharField(max_length = 255)
 	pw_hash = models.CharField(max_length = 255)

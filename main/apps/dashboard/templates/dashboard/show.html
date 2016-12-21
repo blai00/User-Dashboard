@@ -11,12 +11,13 @@
 	{% for messages in message %}
 		<p>{{messages.message}}</p>
 		{% for comments in blog %}
+			<p>{{comments.comment}}</p>
+		{% endfor %}
 		<form action ='/comment/{{blog.id}}' method = 'post'>
 			{% csrf_token %}
 			<textarea name='comment' rows='8' cols='40'></textarea>
 			<input type = 'submit' value ='Post'>
 		</form> 
-		{% endfor %}
 	{% endfor %}
 
 
