@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 <head>
 	<title>Dashboard</title>
@@ -25,4 +26,33 @@
 		</tbody>
 	</table>
 </body>
+=======
+<html>
+<head>
+	<title>Dashboard</title>
+</head>
+<body>
+	<h2>Dashboard</h2>
+	<table>
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Created At</th>
+		</tr>
+		</thead>
+		<tbody>
+			{% for users in user %}
+			<tr>
+				<td>{{users.id}}</td>
+				<td><a href='/{{users.id}}/user/show'>{{users.first_name}} {{users.last_name}}</a></td>
+				<td>{{users.email_address}}</td>
+				<td>{{users.created_at}}</td>
+			{% endfor %}	
+			</tr>
+		</tbody>
+	</table>
+</body>
+>>>>>>> 2ef477b7b2bbb3d29ab5739c0203346c9c406b2b
 </html>

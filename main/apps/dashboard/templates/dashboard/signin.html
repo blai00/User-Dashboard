@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 <head>
 	<title>Login</title>
@@ -16,4 +17,24 @@
 		<input type = 'submit' name = 'submit'
 	</form>
 	<a href ='/add_user'>Don't have an account?</a>
+=======
+<html>
+<head>
+	<title>Login</title>
+</head>
+<body>
+	<h2>Please login below</h2>
+	{% if messages %}
+		{% for message in messages %}
+			<p>{{message}}</p>
+		{% endfor %}
+	{% endif %}
+	<form action = '/login' method = 'post'>
+		{% csrf_token %}
+		Email: <input type = 'text' name = 'email'>
+		Password: <input type ='password' name ='password'>
+		<input type = 'submit' name = 'submit'
+	</form>
+	<a href ='/add_user'>Don't have an account?</a>
+>>>>>>> 2ef477b7b2bbb3d29ab5739c0203346c9c406b2b
 </body>
