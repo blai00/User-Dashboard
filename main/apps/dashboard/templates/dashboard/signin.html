@@ -4,6 +4,11 @@
 </head>
 <body>
 	<h2>Please login below</h2>
+	{% if messages %}
+		{% for message in messages %}
+			<p>{{message}}</p>
+		{% endfor %}
+	{% endif %}
 	<form action = '/login' method = 'post'>
 		{% csrf_token %}
 		Email: <input type = 'text' name = 'email'>
