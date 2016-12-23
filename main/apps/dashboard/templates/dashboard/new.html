@@ -4,13 +4,18 @@
 </head>
 <body>
 	<h2>Register</h2>
-	<form action = 'register' method ='post'>
+	{% if messages %}
+		{% for message in messages %}
+			<p>{{message}}</p>
+		{% endfor %}
+	{% endif %}
+	<form action = '/register' method ='post'>
 		{% csrf_token %}
 		Email: <input type ='text' name ='email'>
 		First Name:<input type ='text' name='first_name'>
 		Last Name:<input type = 'text' name='last_name'>
 		Password:<input type = 'password' name='password'>
-		Comfirm Password:<input type ='password' name ='confirm password'>
+		Comfirm Password:<input type ='password' name ='confirm_password'>
 		<input type='submit' name ='Register'>
 	</form>
 	<a href = '/signin'>Already have an account?</a>

@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.contrib import messages
 from models import User, Message, Comment
 # Create your views here.
 def index(request):
@@ -16,16 +17,16 @@ def register(request):
 	result = User.UserManager.register(request)
 	if result[0] == False:
 		print_messages(request, result[1])
-		return render ('/new')
+		return redirect('/add_user')
 	return log_user_in(request,result[1])
 
 def dashboard(request):
-	user = Users.UserManager.all()
+	user = User.UserManager.all()
 	context = {
 		'user' : user
 	}
 	if not 'user' in request.session:
-		return redirect('/login')
+		return redirect('/signin')
 	return render(request,'dashboard/dashboard.html', context)
 
 def print_messages(request, message_list):
@@ -37,14 +38,14 @@ def log_user_in(request, user):
 	'id' :user.id,
 	'first_name':user.first_name,
 	'last_name' :user.last_name,
-	'email' : user.email
+	'email' : user.email_address
 	}
 
 	return redirect('/dashboard')
 
 def logout(request):
 	request.session.pop('user')
-	return redirect('/login')
+	return redirect('/signin')
 
 def message(request,id):
 	user = Message.objects.get(id=id)

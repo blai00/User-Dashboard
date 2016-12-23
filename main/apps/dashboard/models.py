@@ -18,7 +18,6 @@ class UserManager(models.Manager):
 	
 	def login(self,request):
 		try:
-			dank = request.POST
 			user = User.UserManager.get(email=request.POST['email'])
 			password = request.POST['password'].encode()
 			if bcrypt.hashpw(password, user.pw_hash.encode()):
@@ -27,12 +26,12 @@ class UserManager(models.Manager):
 			pass
 		return (False,['Email or Password do not match.'])
 	
-	def inputs(self, request):
+	def input(self, request):
 		errors = []
 		if len(request.POST['first_name']) < 2 or len(request.POST['last_name']) < 2:
 			errors.append("Please include a first and/or last name that is longer than 2 characters")
 		if not EMAIL_REGEX.match(request.POST['email']):
-			errors.append("Please include a valide email.")
+			errors.append("Please include a valid email.")
 		if len(request.POST['password']) < 8 or request.POST['password'] != request.POST['confirm_password']:
 			errors.append("Passwords must have at least 8 characters and match.")
 
